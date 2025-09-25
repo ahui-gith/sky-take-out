@@ -1,0 +1,19 @@
+# 忽略 IDEA 配置文件
+.idea/
+*.iml
+
+# 忽略 Java 编译产物
+target/
+
+# 忽略日志文件
+*.log
+
+# 忽略敏感配置
+application-dev.yml
+
+#
+*.class
+
+# 忽略测试文件
+**/test/
+*Test.java
