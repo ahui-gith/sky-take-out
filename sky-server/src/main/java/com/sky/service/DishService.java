@@ -60,4 +60,11 @@ public interface DishService {
      * @param id
      */
     void enableOrDisable(Integer status, Long id);
+
+    /**
+     * 根据分类id查询菜品和口味
+     * @param categoryId
+     * @return
+     */
+    List<DishVO> listWithFlavor(Long categoryId);
 }

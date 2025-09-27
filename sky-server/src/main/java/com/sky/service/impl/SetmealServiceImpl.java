@@ -6,18 +6,22 @@ import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
+import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
 import com.sky.service.SetmealService;
+import com.sky.vo.DishItemVO;
 import com.sky.vo.SetmealVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +31,8 @@ public class SetmealServiceImpl implements SetmealService {
     private SetmealMapper setmealMapper;
     @Autowired
     private SetmealDishMapper setmealDishMapper;
+    @Autowired
+    private DishMapper dishMapper;
 
     /**
      * 套餐分页查询
@@ -135,5 +141,27 @@ public class SetmealServiceImpl implements SetmealService {
      */
     public void enableOrDisable(Integer status, Long id) {
         setmealMapper.enableOrDisable(status, id);
+    }
+
+    /**
+     * 根据分类ID查询套餐
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Setmeal> list(Integer categoryId) {
+        List<Setmeal> list = setmealMapper.list(categoryId);
+        return list;
+    }
+
+    /**
+     * 根据套餐ID查询包含的菜品列表
+     * @param setmealId 套餐ID
+     * @return
+     */
+    @Override
+    public List<DishItemVO> getDishById(Long setmealId) {
+        List<DishItemVO> dishItemVOS = setmealDishMapper.getDishBySetmealId(setmealId);
+        return dishItemVOS;
     }
 }

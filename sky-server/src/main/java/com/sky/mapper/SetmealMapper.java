@@ -68,4 +68,12 @@ public interface SetmealMapper {
      */
     @Update("update setmeal set status = #{status} where id = #{id}")
     void enableOrDisable(Integer status, Long id);
+
+    /**
+     * 查询套餐
+     * @param categoryId
+     * @return
+     */
+    @Select("select * from setmeal where category_id = #{categoryId}")
+    List<Setmeal> list(Integer categoryId);
 }
