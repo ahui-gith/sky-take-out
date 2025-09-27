@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 根据类型查询分类
+     * 根据类型查询分类，展示所有左侧列表
      *
      * @param type
      * @return
      */
     @GetMapping("/list")
-    @ApiOperation("根据类型查询分类")
+    @ApiOperation("根据类型查询分类，展示所有左侧列表")
     public Result<List<Category>> list(Integer type) {
         List<Category> list = categoryService.list(type);
         return Result.success(list);
