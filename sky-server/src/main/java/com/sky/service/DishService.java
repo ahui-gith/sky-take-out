@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 菜品管理 业务逻辑层-接口
  */
-@Service
+
 public interface DishService {
     /**
      * 新增菜品

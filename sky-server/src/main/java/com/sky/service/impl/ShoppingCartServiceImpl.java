@@ -26,7 +26,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private SetmealMapper setmealMapper;
 
-    @Override
+
+    /**
+     * 添加购物车
+     *
+     * @param shoppingCartDTO
+     */
     public void add(ShoppingCartDTO shoppingCartDTO) {
         // 判断是否存在
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -40,7 +45,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             ShoppingCart cartService = list.get(0);
             cartService.setNumber(cartService.getNumber() + 1);
             shoppingCartMapper.updateNumberById(cartService);
-        }else {
+        } else {
             // 不存在，添加到购物车，默认数量为1
             //判断当前添加到购物车的是菜品还是套餐
             Long dishId = shoppingCartDTO.getDishId();
@@ -62,5 +67,27 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCartMapper.insert(shoppingCart);
         }
 
+    }
+
+
+    /**
+     * 查看购物车
+     *
+     * @return
+     */
+    public List<ShoppingCart> list() {
+        ShoppingCart build = ShoppingCart.builder()
+                .userId(BaseContext.getCurrentId())
+                .build();
+        List<ShoppingCart> list = shoppingCartMapper.list(build);
+        return list;
+    }
+
+    /**
+     * 清空购物车
+     */
+    @Override
+    public void clean() {
+        shoppingCartMapper.deleteByUserId(BaseContext.getCurrentId());
     }
 }
