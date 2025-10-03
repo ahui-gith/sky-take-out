@@ -225,12 +225,16 @@ public class OrderServiceImpl implements OrderService {
         Orders orders = orderMapper.getById(id);
         Long orderId = orders.getId();// 订单id
 
+        // 获取菜品信息
+        String orderDishesStr = getOrderDishesStr(orders);
+
         // 查询订单明细
         List<OrderDetail> orderDetails = orderDetailMapper.getByOrderId(orderId);
 
         OrderVO orderVO = new OrderVO();
         BeanUtils.copyProperties(orders, orderVO);
         orderVO.setOrderDetailList(orderDetails);
+        orderVO.setOrderDishes(orderDishesStr);
 
         return orderVO;
     }
