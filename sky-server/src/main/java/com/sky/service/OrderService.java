@@ -50,11 +50,11 @@ public interface OrderService {
     OrderVO getOneOrderWithDetails(Long id);
 
     /**
-     * 取消订单
+     * 用户端-取消订单
      *
      * @param id
      */
-    void cancel(Long id) throws Exception;
+    void userCancelById(Long id) throws Exception;
 
     /**
      * 再来一单
@@ -91,4 +91,11 @@ public interface OrderService {
      * @param ordersRejectionDTO
      */
     void rejection(OrdersRejectionDTO ordersRejectionDTO) throws Exception;
+
+    /**
+     * 管理端-取消订单
+     *
+     * @param ordersCancelDTO
+     */
+    void cancel(OrdersCancelDTO ordersCancelDTO) throws Exception;
 }
