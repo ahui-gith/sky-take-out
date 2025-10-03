@@ -5,10 +5,10 @@
 
     <insert id="insertBatch">
         insert into setmeal_dish (setmeal_id, dish_id, name,
-           price, copies) values
+        price, copies) values
         <foreach item="setmealDish" collection="setmealDishes" separator=",">
             (#{setmealDish.setmealId}, #{setmealDish.dishId}, #{setmealDish.name},
-             #{setmealDish.price}, #{setmealDish.copies})
+            #{setmealDish.price}, #{setmealDish.copies})
         </foreach>
     </insert>
     <delete id="deleteBySetmealIds">

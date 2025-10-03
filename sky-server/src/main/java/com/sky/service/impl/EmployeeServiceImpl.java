@@ -92,7 +92,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
 
 
-
     }
 
     /**
@@ -114,7 +113,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * 启用禁用员工账号
      *
      * @param status 状态
-     * @param id 员工id
+     * @param id     员工id
      */
     @Override
     public void enableOrDisable(Integer status, Long id) {

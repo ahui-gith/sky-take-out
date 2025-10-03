@@ -24,7 +24,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("submit")
-    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO){
+    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO) {
         log.info("用户下单：{}", ordersSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
         return Result.success(orderSubmitVO);
@@ -56,8 +56,9 @@ public class OrderController {
     // user/order/historyOrders?pageSize=10&page=1&status=
     @GetMapping("/historyOrders")
     @ApiOperation("查看历史订单")
-    public Result<PageResult> page(Integer page, Integer pageSize, Integer status){
-        return Result.success(orderService.pageQuery(page, pageSize,  status));
+    public Result<PageResult> page(Integer page, Integer pageSize, Integer status) {
+        log.info("历史订单查询：page={}, pageSize={}, status={}", page, pageSize, status);
+        return Result.success(orderService.pageQuery(page, pageSize, status));
     }
 
     /**
@@ -69,7 +70,8 @@ public class OrderController {
     // http://localhost:8080/user/order/orderDetail/16
     @GetMapping("/orderDetail/{id}")
     @ApiOperation("查看订单详情")
-    public Result<OrderVO> getOrderDetail(@PathVariable Long id){
+    public Result<OrderVO> getOrderDetail(@PathVariable Long id) {
+        log.info("查看订单详情：{}", id);
         return Result.success(orderService.getOneOrderWithDetails(id));
     }
 
@@ -84,6 +86,7 @@ public class OrderController {
     @PutMapping("/cancel/{id}")
     @ApiOperation("取消订单")
     public Result cancel(@PathVariable Long id) throws Exception {
+        log.info("取消订单：{}", id);
         orderService.cancel(id);
         return Result.success();
     }
@@ -97,7 +100,8 @@ public class OrderController {
     // http://localhost:8080/user/order/repetition/16
     @PostMapping("/repetition/{id}")
     @ApiOperation("再来一单")
-    public Result repetition(@PathVariable Long id){
+    public Result repetition(@PathVariable Long id) {
+        log.info("再来一单：{}", id);
         orderService.repetition(id);
         return Result.success();
     }

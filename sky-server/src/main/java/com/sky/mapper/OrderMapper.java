@@ -15,12 +15,14 @@ import java.util.List;
 public interface OrderMapper {
     /**
      * 插入订单数据
+     *
      * @param order
      */
     void insert(Orders order);
 
     /**
      * 根据订单号查询订单
+     *
      * @param orderNumber
      */
     @Select("select * from orders where number = #{orderNumber}")
@@ -28,6 +30,7 @@ public interface OrderMapper {
 
     /**
      * 修改订单信息
+     *
      * @param orders
      */
     void update(Orders orders);
@@ -35,6 +38,7 @@ public interface OrderMapper {
 
     /**
      * 分页查询订单列表
+     *
      * @param ordersPageQueryDTO
      * @return
      */
@@ -42,6 +46,7 @@ public interface OrderMapper {
 
     /**
      * 根据id查询订单详情
+     *
      * @param id
      * @return
      */
@@ -50,6 +55,7 @@ public interface OrderMapper {
 
     /**
      * 统计指定状态的订单数量
+     *
      * @param toBeConfirmed
      * @return
      */

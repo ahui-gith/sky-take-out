@@ -32,13 +32,14 @@ public class DishController {
 
     /**
      * 新增菜品
+     *
      * @param dishDTO
      * @return
      */
     @PostMapping
     @ApiOperation("新增菜品")
     @CacheEvict(value = "dishOrSetmealCache", key = "#dishDTO.categoryId")
-    public Result add(@RequestBody DishDTO dishDTO){
+    public Result add(@RequestBody DishDTO dishDTO) {
         log.info("新增菜品：{}", dishDTO);
         dishService.addWithFlavor(dishDTO);
         return Result.success();
@@ -46,12 +47,13 @@ public class DishController {
 
     /**
      * 菜品分页查询
+     *
      * @param dishPageQueryDTO 菜品分页参数
      * @return
      */
     @GetMapping("/page")
     @ApiOperation("分页查询")
-    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO){
+    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO) {
         log.info("分页查询：{}", dishPageQueryDTO);
         PageResult pageResult = dishService.pageQuery(dishPageQueryDTO);
         return Result.success(pageResult);
@@ -59,13 +61,14 @@ public class DishController {
 
     /**
      * 批量删除
+     *
      * @param ids
      * @return
      */
     @DeleteMapping
     @ApiOperation("批量删除")
     @CacheEvict(value = "dishOrSetmealCache", allEntries = true)
-    public Result deleteBatch(@RequestParam List<Long> ids){
+    public Result deleteBatch(@RequestParam List<Long> ids) {
         log.info("批量删除：{}", ids);
         dishService.deleteBatch(ids);
         return Result.success();
@@ -73,12 +76,13 @@ public class DishController {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
     @GetMapping("/{id}")
     @ApiOperation("根据id查询")
-    public Result<DishVO> getById(@PathVariable Long id){
+    public Result<DishVO> getById(@PathVariable Long id) {
         log.info("根据id查询：{}", id);
         DishVO dishVO = dishService.getByIdWithFlavor(id);
         return Result.success(dishVO);
@@ -86,13 +90,14 @@ public class DishController {
 
     /**
      * 修改菜品
+     *
      * @param dishDTO
      * @return
      */
     @PutMapping
     @ApiOperation("修改菜品")
     @CacheEvict(value = "dishOrSetmealCache", allEntries = true)
-    public Result update(@RequestBody DishDTO dishDTO){
+    public Result update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品：{}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
@@ -100,7 +105,7 @@ public class DishController {
 
     @GetMapping("/list")
     @ApiOperation("根据分类id查询菜品")
-    public Result<List<Dish>> list(Long categoryId){
+    public Result<List<Dish>> list(Long categoryId) {
         log.info("根据分类id查询菜品：{}", categoryId);
         List<Dish> list = dishService.list(categoryId);
         return Result.success(list);
@@ -108,6 +113,7 @@ public class DishController {
 
     /**
      * 起售、停售
+     *
      * @param status
      * @param id
      * @return
@@ -115,7 +121,7 @@ public class DishController {
     @PostMapping("/status/{status}")
     @ApiOperation("起售、停售")
     @CacheEvict(value = "dishOrSetmealCache", allEntries = true)
-    public Result startOrStop(@PathVariable Integer status, Long id){
+    public Result startOrStop(@PathVariable Integer status, Long id) {
         log.info("起售、停售：{}", status);
         dishService.enableOrDisable(status, id);
         return Result.success();

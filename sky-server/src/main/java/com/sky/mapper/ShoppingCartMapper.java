@@ -12,12 +12,14 @@ import java.util.List;
 public interface ShoppingCartMapper {
     /**
      * 获取购物车数据
+     *
      * @param shoppingCart
      */
     List<ShoppingCart> list(ShoppingCart shoppingCart);
 
     /**
      * 修改购物车中商品数量
+     *
      * @param cartService
      */
     @Update("update shopping_cart set number = #{number} where id = #{id}")
@@ -25,6 +27,7 @@ public interface ShoppingCartMapper {
 
     /**
      * 插入数据到购物车
+     *
      * @param shoppingCart
      */
     @Insert("insert into shopping_cart (name, image, user_id, dish_id, setmeal_id, dish_flavor, number,amount, create_time) values " +
@@ -33,6 +36,7 @@ public interface ShoppingCartMapper {
 
     /**
      * 根据用户id删除购物车数据
+     *
      * @param currentId
      */
     @Update("delete from shopping_cart where user_id = #{currentId}")
@@ -40,6 +44,7 @@ public interface ShoppingCartMapper {
 
     /**
      * 批量插入购物车数据
+     *
      * @param shoppingCartList
      */
     void insertBatch(List<ShoppingCart> shoppingCartList);

@@ -20,6 +20,7 @@ public interface SetmealMapper {
 
     /**
      * 根据分类id查询套餐的数量
+     *
      * @param id
      * @return
      */
@@ -28,6 +29,7 @@ public interface SetmealMapper {
 
     /**
      * 套餐分页查询
+     *
      * @param setmealPageQueryDTO
      * @return
      */
@@ -35,6 +37,7 @@ public interface SetmealMapper {
 
     /**
      * 新增套餐
+     *
      * @param setmeal
      */
     @AutoFill(value = OperationType.INSERT)
@@ -42,6 +45,7 @@ public interface SetmealMapper {
 
     /**
      * 根据id查询套餐和套餐菜品关系
+     *
      * @param id
      * @return
      */
@@ -50,12 +54,14 @@ public interface SetmealMapper {
 
     /**
      * 批量删除套餐
+     *
      * @param ids
      */
     void deleteBatch(List<Long> ids);
 
     /**
      * 修改套餐
+     *
      * @param setmeal
      */
     @AutoFill(value = OperationType.UPDATE)
@@ -63,6 +69,7 @@ public interface SetmealMapper {
 
     /**
      * 起售、停售套餐
+     *
      * @param status
      * @param id
      */
@@ -71,6 +78,7 @@ public interface SetmealMapper {
 
     /**
      * 查询套餐
+     *
      * @param categoryId
      * @return
      */

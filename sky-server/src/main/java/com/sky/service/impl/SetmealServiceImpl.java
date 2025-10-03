@@ -36,11 +36,12 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 套餐分页查询
+     *
      * @param setmealPageQueryDTO
      * @return
      */
     public PageResult pageQuery(SetmealPageQueryDTO setmealPageQueryDTO) {
-        PageHelper.startPage(setmealPageQueryDTO.getPage(),setmealPageQueryDTO.getPageSize());
+        PageHelper.startPage(setmealPageQueryDTO.getPage(), setmealPageQueryDTO.getPageSize());
         Page<SetmealVO> page = setmealMapper.pageQuery(setmealPageQueryDTO);
         long total = page.getTotal();
         List<SetmealVO> records = page.getResult();
@@ -49,6 +50,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 新增套餐
+     *
      * @param setmealDTO
      */
     @Transactional
@@ -71,6 +73,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 批量删除套餐
+     *
      * @param ids
      */
     @Transactional
@@ -92,6 +95,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 根据id查询套餐
+     *
      * @param id
      * @return
      */
@@ -111,6 +115,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 修改套餐
+     *
      * @param setmealDTO
      */
     @Transactional
@@ -136,6 +141,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 起售、停售套餐
+     *
      * @param status
      * @param id
      */
@@ -145,6 +151,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 根据分类ID查询套餐
+     *
      * @param categoryId
      * @return
      */
@@ -156,6 +163,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     /**
      * 根据套餐ID查询包含的菜品列表
+     *
      * @param setmealId 套餐ID
      * @return
      */

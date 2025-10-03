@@ -32,7 +32,7 @@ public class UserController {
 
     @PostMapping("login")
     @ApiOperation("微信登录")
-    public Result<UserLoginVO> login(@RequestBody UserLoginDTO  userLoginDTO) { // 获取微信登录code, 调用微信接口换取用户信息
+    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) { // 获取微信登录code, 调用微信接口换取用户信息
         log.info("微信用户登录，code：{}", userLoginDTO.getCode());
 
         // 处理登录

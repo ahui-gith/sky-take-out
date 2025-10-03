@@ -14,6 +14,7 @@ public interface EmployeeMapper {
 
     /**
      * 根据用户名查询员工
+     *
      * @param username
      * @return
      */
@@ -22,6 +23,7 @@ public interface EmployeeMapper {
 
     /**
      * 插入员工数据
+     *
      * @param employee
      */
     @AutoFill(value = OperationType.INSERT)
@@ -31,6 +33,7 @@ public interface EmployeeMapper {
 
     /**
      * 分页查询
+     *
      * @param employeePageQueryDTO
      * @return 员工列表
      */
@@ -38,6 +41,7 @@ public interface EmployeeMapper {
 
     /**
      * 根据id修改员工信息
+     *
      * @param employee 员工信息
      */
     @AutoFill(value = OperationType.UPDATE)
@@ -45,6 +49,7 @@ public interface EmployeeMapper {
 
     /**
      * 根据id查询员工信息
+     *
      * @param id 员工id
      * @return 员工信息
      */

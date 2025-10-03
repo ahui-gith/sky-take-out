@@ -83,7 +83,8 @@ public class EmployeeController {
 
     @GetMapping("/page")
     @ApiOperation("分页查询员工")
-    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO){
+    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
+        log.info("分页查询员工：{}", employeePageQueryDTO);
         return Result.success(employeeService.pageQuery(employeePageQueryDTO));
     }
 
@@ -104,6 +105,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     @ApiOperation("查询员工信息")
     public Result<Employee> getById(@PathVariable Long id) {
+        log.info("查询员工信息，员工id为：{}", id);
         return Result.success(employeeService.getById(id));
     }
 
@@ -115,7 +117,7 @@ public class EmployeeController {
      */
     @PutMapping
     @ApiOperation("修改员工信息")
-    public Result update(@RequestBody EmployeeDTO  employeeDTO) {
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
         log.info("员工修改信息：{}", employeeDTO);
         employeeService.updateById(employeeDTO);
         return Result.success();
@@ -129,6 +131,7 @@ public class EmployeeController {
     @PostMapping("/logout")
     @ApiOperation("员工退出")
     public Result<String> logout() {
+        log.info("员工退出");
         return Result.success();
     }
 

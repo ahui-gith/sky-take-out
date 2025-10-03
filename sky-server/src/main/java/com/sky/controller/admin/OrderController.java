@@ -35,6 +35,7 @@ public class OrderController {
     @GetMapping("/conditionSearch")
     @ApiOperation("订单搜索")
     public Result<PageResult> conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO) {
+        log.info("分页搜索订单：{}", ordersPageQueryDTO);
         PageResult pageResult = orderService.conditionSearch(ordersPageQueryDTO);
         return Result.success(pageResult);
     }
@@ -49,6 +50,7 @@ public class OrderController {
     @GetMapping("/statistics")
     @ApiOperation("统计订单数据")
     public Result<OrderStatisticsVO> statistics() {
+        log.info("订单统计");
         OrderStatisticsVO orderStatisticsVO = orderService.statistics();
         return Result.success(orderStatisticsVO);
     }
@@ -64,6 +66,7 @@ public class OrderController {
     @GetMapping("/details/{id}")
     @ApiOperation("查询订单详情")
     public Result<OrderVO> getOrderDetails(@PathVariable Long id) {
+        log.info("查询订单详情：{}", id);
         OrderVO orderVO = orderService.getOneOrderWithDetails(id);
         return Result.success(orderVO);
     }

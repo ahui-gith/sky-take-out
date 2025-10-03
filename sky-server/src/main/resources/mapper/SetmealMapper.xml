@@ -4,15 +4,23 @@
 <mapper namespace="com.sky.mapper.SetmealMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into setmeal (name, category_id, price, status,
-        create_time, update_time, create_user, update_user, image,
-        description) values (#{name}, #{categoryId}, #{price}, #{status},
-        #{createTime}, #{updateTime}, #{createUser}, #{updateUser}, #{image},
-        #{description})
+                             create_time, update_time, create_user, update_user, image,
+                             description)
+        values (#{name}, #{categoryId}, #{price}, #{status},
+                #{createTime}, #{updateTime}, #{createUser}, #{updateUser}, #{image},
+                #{description})
     </insert>
     <update id="update">
-        update setmeal set name = #{name}, category_id = #{categoryId}, price = #{price}, status = #{status},
-        update_time = #{updateTime}, update_user = #{updateUser}, image = #{image},
-        description = #{description} where id = #{id}
+        update setmeal
+        set name        = #{name},
+            category_id = #{categoryId},
+            price       = #{price},
+            status      = #{status},
+            update_time = #{updateTime},
+            update_user = #{updateUser},
+            image       = #{image},
+            description = #{description}
+        where id = #{id}
     </update>
     <delete id="deleteBatch">
         delete from setmeal where id in

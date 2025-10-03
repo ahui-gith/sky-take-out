@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 微信登录
+     *
      * @param userLoginDTO
      * @return
      */
@@ -62,10 +63,10 @@ public class UserServiceImpl implements UserService {
     private String getOpenid(String code) {
         //调用微信接口服务，获得当前微信用户的openid
         Map<String, String> map = new HashMap<>();
-        map.put("appid",weChatProperties.getAppid());
-        map.put("secret",weChatProperties.getSecret());
-        map.put("js_code",code);
-        map.put("grant_type","authorization_code");
+        map.put("appid", weChatProperties.getAppid());
+        map.put("secret", weChatProperties.getSecret());
+        map.put("js_code", code);
+        map.put("grant_type", "authorization_code");
         String json = HttpClientUtil.doGet(WX_LOGIN, map);
 
         JSONObject jsonObject = JSON.parseObject(json);
