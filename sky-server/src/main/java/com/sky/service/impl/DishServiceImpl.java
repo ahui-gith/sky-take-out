@@ -112,7 +112,6 @@ public class DishServiceImpl implements DishService {
      * @param id
      * @return
      */
-    @Override
     public DishVO getByIdWithFlavor(Long id) {
         // 1.根据id查询菜品数据
         Dish dish = dishMapper.getById(id);
@@ -179,7 +178,6 @@ public class DishServiceImpl implements DishService {
      * @param categoryId
      * @return
      */
-    @Override
     public List<DishVO> listWithFlavor(Long categoryId) {
         List<Dish> dishList = list(categoryId);
 

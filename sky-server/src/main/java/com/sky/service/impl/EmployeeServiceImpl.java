@@ -68,7 +68,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
-    @Override
     public void add(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         // 把DTO的数据复制到实体对象中
@@ -100,7 +99,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employeePageQueryDTO
      * @return PageResult分页结果
      */
-    @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getPageSize());
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
@@ -115,7 +113,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param status 状态
      * @param id     员工id
      */
-    @Override
     public void enableOrDisable(Integer status, Long id) {
         Employee employee = Employee.builder()
                 .status(status)
@@ -132,7 +129,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param id 员工id
      * @return 员工信息
      */
-    @Override
     public Employee getById(Long id) {
         Employee employee = employeeMapper.getById(id);
         employee.setPassword("****");
@@ -144,7 +140,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      *
      * @param employeeDTO
      */
-    @Override
     public void updateById(EmployeeDTO employeeDTO) {
         // 创建一个员工对象，用于封装员工数据
         Employee employee = new Employee();
