@@ -218,7 +218,6 @@ public class OrderServiceImpl implements OrderService {
      * @param id
      * @return
      */
-    @Override
     public OrderVO getOneOrderWithDetails(Long id) {
 
 
@@ -286,7 +285,6 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param id
      */
-    @Override
     public void repetition(Long id) {
         // 查询当前用户id
         Long userId = BaseContext.getCurrentId();
@@ -372,7 +370,6 @@ public class OrderServiceImpl implements OrderService {
      *
      * @return
      */
-    @Override
     public OrderStatisticsVO statistics() {
         // 根据状态，分别查询出待接单、待派送、派送中的订单数量
         Integer toBeConfirmed = orderMapper.countStatus(Orders.TO_BE_CONFIRMED);
@@ -392,7 +389,6 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param ordersConfirmDTO
      */
-    @Override
     public void confirm(OrdersConfirmDTO ordersConfirmDTO) {
         // 根据id修改订单状态
         Orders orders = Orders.builder()
@@ -407,7 +403,6 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param ordersRejectionDTO
      */
-    @Override
     public void rejection(OrdersRejectionDTO ordersRejectionDTO) throws Exception {
         // 只有订单处于“待接单”状态时可以执行拒单操作
         Orders ordersDB = orderMapper.getById(ordersRejectionDTO.getId());
@@ -467,6 +462,27 @@ public class OrderServiceImpl implements OrderService {
         orders.setStatus(Orders.CANCELLED);
         orders.setCancelReason(ordersCancelDTO.getCancelReason());
         orders.setCancelTime(LocalDateTime.now());
+        orderMapper.update(orders);
+    }
+
+    /**
+     * 派送订单
+     *
+     * @param id
+     */
+    public void delivery(Long id) {
+        // 根据id查询订单
+        Orders ordersDB = orderMapper.getById(id);
+
+        // 判断订单状态，如果不是待派送状态，则不能派送
+        if (ordersDB == null || !ordersDB.getStatus().equals(Orders.CONFIRMED)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        // 派送
+        Orders orders = new Orders();
+        orders.setId(id);
+        orders.setStatus(Orders.DELIVERY_IN_PROGRESS);
         orderMapper.update(orders);
     }
 }
