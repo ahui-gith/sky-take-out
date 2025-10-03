@@ -1,6 +1,8 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.OrdersConfirmDTO;
 import com.sky.dto.OrdersPageQueryDTO;
+import com.sky.entity.Orders;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.OrderService;
@@ -10,10 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 订单管理
@@ -67,5 +66,22 @@ public class OrderController {
     public Result<OrderVO> getOrderDetails(@PathVariable Long id) {
         OrderVO orderVO = orderService.getOneOrderWithDetails(id);
         return Result.success(orderVO);
+    }
+
+    /**
+     * 接单
+     *
+     * @param ordersConfirmDTO
+     * @return
+     */
+    // Path： /admin/order/confirm
+    // Method： PUT
+    @PutMapping("/confirm")
+    @ApiOperation("确认订单")
+    public Result confirm(@RequestBody OrdersConfirmDTO ordersConfirmDTO) {
+        log.info("接单：{}", ordersConfirmDTO);
+        ordersConfirmDTO.setStatus(Orders.CONFIRMED);
+        orderService.confirm(ordersConfirmDTO);
+        return Result.success();
     }
 }
